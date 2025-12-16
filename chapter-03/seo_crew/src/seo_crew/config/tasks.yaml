@@ -1,0 +1,25 @@
+keyword_research_task:
+  description: >
+    Extract high-value keyword candidates by searching for and analyzing
+    on-page content from competitors' websites. Use the search tool provided to find all the serps for a competitor using the "site:example.com" syntax.
+    Analyze the SERPs and extract the high-value keyword candidates. Usually, those can be found in the title and/or URL of the search results.
+    Use this location for the search: {country} and this language: {language}.
+  expected_output: >
+    A list of high-value keyword candidates. Format the list as JSON array of strings, ordered by the most relevant to the least relevant. Ignore any keywords that we have written blog posts about already.
+  agent: keyword_researcher
+
+topic_research_task:
+  description: >
+    Based on the keyword candidates, choose a topic for a single blog post that incorporates one or more of the keywords. Go ahead and do some deep research on the topic, using the search and website scraping tools provided to you.
+  expected_output: >
+    An in-depth report on the topic. Format the report as markdown.
+  agent: topic_researcher
+
+blog_writing_task:
+  description: >
+    Based on the research that the topic researcher has done, write a highly engaging and structured blog post that incorporates one or more of the keywords chosen by the keyword and topic researchers. Make sure the blog post is optimized for SEO and uses at least one of the keywords in the title.
+    Use the image generation tool to generate meaningful images that convey the main ideas of the post better. Embed at least three images in the post.
+  expected_output: >
+    A highly engaging and structured blog post in the language {language} that incorporates one or more of the keywords chosen by the keyword and topic researchers. Format the blog post as markdown.
+  agent: blog_post_writer
+  output_file: blog_post.md
