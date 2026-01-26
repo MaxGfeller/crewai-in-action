@@ -1,0 +1,24 @@
+[project]
+name = "docs_updater"
+version = "0.1.0"
+description = "docs_updater using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai-tools[mcp]>=1.7.2",
+    "crewai[tools]>=1.7.2",
+    "playwright>=1.57.0",
+    "mcp[cli]>=1.0.0",
+]
+
+[project.scripts]
+docs_updater = "docs_updater.main:run"
+run_crew = "docs_updater.main:run"
+train = "docs_updater.main:train"
+replay = "docs_updater.main:replay"
+test = "docs_updater.main:test"
+mcp-server = "docs_updater.mcp_server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,54 @@
+update_docs:
+  description: >
+    Update the user-facing documentation in our Mintlify documentation site so that it reflects the latest changes in the codebase.
+
+    Here are some details about the latest changes in the application:
+    {latest_changes}
+
+    IMPORTANT - When updating documentation files, follow these rules:
+    1. ONLY modify the specific sections that relate to the changes described above
+    2. DO NOT rewrite or regenerate content that is unrelated to the changes
+    3. Preserve all existing content, formatting, and structure that doesn't need to change
+    4. Read the entire file first, then make minimal, targeted edits
+    5. When using the file writer tool, include ALL original content that should be kept
+
+    When writing, please orient yourself on the existing documentation and try to follow the same structure and style. Use simple words, write clearly, and don't use any jargon - if you do, make sure to explain the term in the text.
+
+    Use the provided file tools to explore and update the documentation:
+    - Use list_docs_directory to see available files and folders (e.g., list_docs_directory('.') for root)
+    - Use read_docs_file to read file contents (e.g., read_docs_file('introduction.mdx'))
+    - Use write_docs_file to update files (e.g., write_docs_file('getting-started.mdx', content))
+    All paths should be relative (e.g., 'introduction.mdx', 'images/dashboard.png')
+
+    SCREENSHOT ANALYSIS: After updating the documentation, identify if any screenshots need to be updated based on the changes. For each screenshot that needs updating, provide:
+    - The page/view that needs to be captured (e.g., "dashboard after login")
+    - The filename for the screenshot (e.g., "dashboard.png")
+
+  expected_output: >
+    1. A summary of documentation changes made
+    2. A list of screenshots needed (if any), with format:
+       SCREENSHOT: [page description] -> [filename].png
+  agent: docs_updater
+
+take_screenshots:
+  description: >
+    Based on the documentation update analysis from the previous task, take the required screenshots.
+
+    For each screenshot requested:
+    1. Use browser_navigate to go to http://localhost:4100/
+    2. Use browser_snapshot to see the current page
+    3. Log in using browser_type and browser_click with demo credentials
+    4. Navigate to the correct page and use browser_snapshot to verify
+    5. Use browser_screenshot with just the filename (e.g., 'dashboard.png')
+
+    After all screenshots are taken, use browser_close to close the browser.
+
+    Demo credentials:
+    Email: demo@example.com
+    Password: password123
+  expected_output: >
+    A list of screenshots saved:
+    SCREENSHOT: [description] saved to [filename].png
+  agent: screenshotter
+  context:
+    - update_docs
