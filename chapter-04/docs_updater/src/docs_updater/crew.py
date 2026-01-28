@@ -18,7 +18,7 @@ class DocsUpdater():
 		return Agent(
 			config=self.agents_config['docs_updater'],
 			tools=get_scoped_file_tools(self.docs_base_directory),
-			allow_delegation=False,
+			allow_delegation=True,  # Can delegate screenshot work to screenshotter
 			verbose=self.verbose,
 		)
 
@@ -40,12 +40,8 @@ class DocsUpdater():
 			agent=self.docs_updater(),
 		)
 
-	@task
-	def take_screenshots(self) -> Task:
-		return Task(
-			config=self.tasks_config['take_screenshots'],
-			agent=self.screenshotter(),
-		)
+	# Note: screenshotter agent has no pre-defined task.
+	# It is invoked via delegation when docs_updater needs screenshots.
 
 	@crew
 	def crew(self) -> Crew:

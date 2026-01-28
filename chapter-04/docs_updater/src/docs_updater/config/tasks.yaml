@@ -20,35 +20,16 @@ update_docs:
     - Use write_docs_file to update files (e.g., write_docs_file('getting-started.mdx', content))
     All paths should be relative (e.g., 'introduction.mdx', 'images/dashboard.png')
 
-    SCREENSHOT ANALYSIS: After updating the documentation, identify if any screenshots need to be updated based on the changes. For each screenshot that needs updating, provide:
-    - The page/view that needs to be captured (e.g., "dashboard after login")
-    - The filename for the screenshot (e.g., "dashboard.png")
+    SCREENSHOTS: After updating the documentation, if any screenshots need to be updated based on the changes,
+    delegate the screenshot task to the "Application screenshot specialist" coworker using the delegation tool.
+
+    When delegating a screenshot task, tell the specialist:
+    - Which page/view needs to be captured (e.g., "the dashboard page after login")
+    - The exact filename to save (e.g., "dashboard.png")
+
+    Example: "Take a screenshot of the dashboard page after login and save it as dashboard.png"
 
   expected_output: >
     1. A summary of documentation changes made
-    2. A list of screenshots needed (if any), with format:
-       SCREENSHOT: [page description] -> [filename].png
+    2. For each screenshot needed: confirmation that the task was delegated to the screenshot specialist and the result
   agent: docs_updater
-
-take_screenshots:
-  description: >
-    Based on the documentation update analysis from the previous task, take the required screenshots.
-
-    For each screenshot requested:
-    1. Use browser_navigate to go to http://localhost:4100/
-    2. Use browser_snapshot to see the current page
-    3. Log in using browser_type and browser_click with demo credentials
-    4. Navigate to the correct page and use browser_snapshot to verify
-    5. Use browser_screenshot with just the filename (e.g., 'dashboard.png')
-
-    After all screenshots are taken, use browser_close to close the browser.
-
-    Demo credentials:
-    Email: demo@example.com
-    Password: password123
-  expected_output: >
-    A list of screenshots saved:
-    SCREENSHOT: [description] saved to [filename].png
-  agent: screenshotter
-  context:
-    - update_docs
