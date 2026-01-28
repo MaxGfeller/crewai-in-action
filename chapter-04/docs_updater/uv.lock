@@ -511,7 +511,7 @@ wheels = [
 
 [[package]]
 name = "crewai"
-version = "1.7.2"
+version = "1.9.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiosqlite" },
@@ -540,9 +540,9 @@ dependencies = [
     { name = "tomli-w" },
     { name = "uv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3c/f2/2e51f7e402495e3644c59bd429a6d93994313bdc733d3c5a97d1f8391ca5/crewai-1.7.2.tar.gz", hash = "sha256:12c6430cbb81d361d2c69c6d9f508c9373e322f79811017a697bd4b66425e694", size = 3727763, upload-time = "2025-12-19T21:44:01.549Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a5/26/51f12c7f4742565d5376b3f76ab8e3ba7a44c98bfb517333eb69222c662d/crewai-1.9.1.tar.gz", hash = "sha256:eec595069548d2b2fdd4d9c8a7286af996b3b2ed8032b1150387ae6027f36885", size = 6859864, upload-time = "2026-01-28T01:45:15.061Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/81/0a5a71c93b577aa899d70449b6820f088167c5578bf32769567ffff0e9cb/crewai-1.7.2-py3-none-any.whl", hash = "sha256:ebf5275a38deb98c768d5bc24d664e1e4c1c57528000774f2b6cdfa6e3791f3e", size = 666804, upload-time = "2025-12-19T21:43:59.147Z" },
+    { url = "https://files.pythonhosted.org/packages/cd/a5/0521778727505354c44e50bd59a184b85245c090887081b2d9e275d2ca2c/crewai-1.9.1-py3-none-any.whl", hash = "sha256:87973da3cfc36827c9ac0185f20fa51a8c9dce30b0b0c357d4117339228e1eda", size = 768279, upload-time = "2026-01-28T01:45:12.733Z" },
 ]
 
 [package.optional-dependencies]
@@ -552,7 +552,7 @@ tools = [
 
 [[package]]
 name = "crewai-tools"
-version = "1.7.2"
+version = "1.9.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
@@ -566,9 +566,9 @@ dependencies = [
     { name = "tiktoken" },
     { name = "youtube-transcript-api" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/84/d0/5870026ea6459f1e4a1d8287846962c5592999ade5e34cd273e1d612767e/crewai_tools-1.7.2.tar.gz", hash = "sha256:c138c1fd49945f989b8fe053e80fc03220328a236768e879e8f59f696c7c0bb1", size = 806589, upload-time = "2025-12-19T21:44:05.783Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ff/70/ab9e6ad233047cc2f4e361085c363b610400136d628a18873f2cb9b3e541/crewai_tools-1.9.1.tar.gz", hash = "sha256:fc1e35ec1292a80031cac2c518696f20c540e729d1876e022506e54dbf5cc76c", size = 802653, upload-time = "2026-01-28T01:45:22.757Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b9/36/51bac8b0a7d39d37e80a209a76333873efb0fd4c3c6b6b9b980fb7dd7048/crewai_tools-1.7.2-py3-none-any.whl", hash = "sha256:2d1a07ca9ee77a50b0aab9683b66fc84d988b413a7b09cd47d77a29366ce332c", size = 766789, upload-time = "2025-12-19T21:44:03.608Z" },
+    { url = "https://files.pythonhosted.org/packages/dc/ae/411e8e7f19df3288c34e457874ad65a4802a59ce559f9f4314bdc0adad51/crewai_tools-1.9.1-py3-none-any.whl", hash = "sha256:2a14455d2d420d06ee106abc7586a6ff07d86dd65de6382ada7c49944ca2399d", size = 763914, upload-time = "2026-01-28T01:45:20.958Z" },
 ]
 
 [package.optional-dependencies]
@@ -712,8 +712,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "crewai", extras = ["tools"], specifier = ">=1.7.2" },
-    { name = "crewai-tools", extras = ["mcp"], specifier = ">=1.7.2" },
+    { name = "crewai", extras = ["tools"], specifier = ">=1.9.0" },
+    { name = "crewai-tools", extras = ["mcp"], specifier = ">=1.9.0" },
     { name = "mcp", extras = ["cli"], specifier = ">=1.0.0" },
     { name = "playwright", specifier = ">=1.57.0" },
 ]
@@ -1522,7 +1522,7 @@ wheels = [
 
 [[package]]
 name = "mcp"
-version = "1.16.0"
+version = "1.23.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -1531,15 +1531,18 @@ dependencies = [
     { name = "jsonschema" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
+    { name = "pyjwt", extra = ["crypto"] },
     { name = "python-multipart" },
     { name = "pywin32", marker = "sys_platform == 'win32'" },
     { name = "sse-starlette" },
     { name = "starlette" },
+    { name = "typing-extensions" },
+    { name = "typing-inspection" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3d/a1/b1f328da3b153683d2ec34f849b4b6eac2790fb240e3aef06ff2fab3df9d/mcp-1.16.0.tar.gz", hash = "sha256:39b8ca25460c578ee2cdad33feeea122694cfdf73eef58bee76c42f6ef0589df", size = 472918, upload-time = "2025-10-02T16:58:20.631Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a7/a4/d06a303f45997e266f2c228081abe299bbcba216cb806128e2e49095d25f/mcp-1.23.3.tar.gz", hash = "sha256:b3b0da2cc949950ce1259c7bfc1b081905a51916fcd7c8182125b85e70825201", size = 600697, upload-time = "2025-12-09T16:04:37.351Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c9/0e/7cebc88e17daf94ebe28c95633af595ccb2864dc2ee7abd75542d98495cc/mcp-1.16.0-py3-none-any.whl", hash = "sha256:ec917be9a5d31b09ba331e1768aa576e0af45470d657a0319996a20a57d7d633", size = 167266, upload-time = "2025-10-02T16:58:19.039Z" },
+    { url = "https://files.pythonhosted.org/packages/32/c6/13c1a26b47b3f3a3b480783001ada4268917c9f42d78a079c336da2e75e5/mcp-1.23.3-py3-none-any.whl", hash = "sha256:32768af4b46a1b4f7df34e2bfdf5c6011e7b63d7f1b0e321d0fdef4cd6082031", size = 231570, upload-time = "2025-12-09T16:04:35.56Z" },
 ]
 
 [package.optional-dependencies]
@@ -2806,11 +2809,16 @@ wheels = [
 
 [[package]]
 name = "pyjwt"
-version = "2.9.0"
+version = "2.10.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/fb/68/ce067f09fca4abeca8771fe667d89cc347d1e99da3e093112ac329c6020e/pyjwt-2.9.0.tar.gz", hash = "sha256:7e1e5b56cc735432a7369cbfa0efe50fa113ebecdc04ae6922deba8b84582d0c", size = 78825, upload-time = "2024-08-01T15:01:08.445Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/46/bd74733ff231675599650d3e47f361794b22ef3e3770998dda30d3b63726/pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953", size = 87785, upload-time = "2024-11-28T03:43:29.933Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/84/0fdf9b18ba31d69877bd39c9cd6052b47f3761e9910c15de788e519f079f/PyJWT-2.9.0-py3-none-any.whl", hash = "sha256:3b02fb0f44517787776cf48f2ae25d8e14f300e6d7545a4315cee571a415e850", size = 22344, upload-time = "2024-08-01T15:01:06.481Z" },
+    { url = "https://files.pythonhosted.org/packages/61/ad/689f02752eeec26aed679477e80e632ef1b682313be70793d798c1d5fc8f/PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb", size = 22997, upload-time = "2024-11-28T03:43:27.893Z" },
+]
+
+[package.optional-dependencies]
+crypto = [
+    { name = "cryptography" },
 ]
 
 [[package]]
