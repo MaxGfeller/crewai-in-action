@@ -37,7 +37,7 @@ class SeoCrew():
     return Agent(
       config=self.agents_config['blog_post_writer'],
       verbose=True,
-      tools=[ImageGenerationTool(base_path="./images")]
+      tools=[ImageGenerationTool(base_path="./artifacts/images")]
     )
 
   @task

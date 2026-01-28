@@ -22,4 +22,4 @@ blog_writing_task:
   expected_output: >
     A highly engaging and structured blog post in the language {language} that incorporates one or more of the keywords chosen by the keyword and topic researchers. Format the blog post as markdown.
   agent: blog_post_writer
-  output_file: blog_post.md
+  output_file: artifacts/blog_post.md

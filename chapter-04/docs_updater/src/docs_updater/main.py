@@ -16,7 +16,11 @@ def run():
     """
     Run the crew.
     """
-    docs_path = '/Users/mg/projects/crewai-book-examples/chapter-04/demo-docs'
+    import os
+
+    docs_path = os.environ.get('DOCS_PATH')
+    if not docs_path:
+        raise ValueError("DOCS_PATH environment variable must be set")
 
     inputs = {
         'latest_changes': 'In the dashboard, we have removed the average age column.',
