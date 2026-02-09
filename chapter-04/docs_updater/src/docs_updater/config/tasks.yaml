@@ -21,15 +21,26 @@ update_docs:
     All paths should be relative (e.g., 'introduction.mdx', 'images/dashboard.png')
 
     SCREENSHOTS: After updating the documentation, if any screenshots need to be updated based on the changes,
-    delegate the screenshot task to the "Application screenshot specialist" coworker using the delegation tool.
+    you MUST use the "Delegate work to coworker" tool to delegate the screenshot task to the coworker named
+    "Application screenshot specialist". Do NOT just say you delegated - you MUST actually call the delegation tool.
 
-    When delegating a screenshot task, tell the specialist:
+    When delegating a screenshot task, provide these details in the task description:
     - Which page/view needs to be captured (e.g., "the dashboard page after login")
-    - The exact filename to save (e.g., "dashboard.png")
+    - The filename to save (e.g., "dashboard.png")
 
-    Example: "Take a screenshot of the dashboard page after login and save it as dashboard.png"
+    Example task to delegate: "Take a screenshot of the dashboard page after login and save it as dashboard.png"
+
+    IMPORTANT: After delegation completes, the coworker will report back the FULL ABSOLUTE PATH to the saved screenshot
+    (something like /var/folders/.../dashboard.png). You MUST immediately use the "copy_to_docs" tool to copy
+    the screenshot from that path to the correct location in the docs folder.
+
+    You MUST call copy_to_docs with:
+    - source_path: the absolute path from the coworker's response (e.g., "/var/folders/.../dashboard.png")
+    - destination_path: relative path in docs (e.g., "images/dashboard.png")
+
+    DO NOT finish the task without calling copy_to_docs after each screenshot delegation.
 
   expected_output: >
     1. A summary of documentation changes made
-    2. For each screenshot needed: confirmation that the task was delegated to the screenshot specialist and the result
+    2. For each screenshot needed: confirmation that the screenshot was captured and copied to the docs folder
   agent: docs_updater

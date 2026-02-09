@@ -1,54 +1,82 @@
-# DocsUpdater Crew
+# Chapter 4: Agent Delegation with MCP Browser Automation
 
-Welcome to the DocsUpdater Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This example demonstrates agent delegation in CrewAI, where a documentation writer delegates screenshot tasks to a browser automation specialist powered by Playwright MCP.
 
-## Installation
+## What It Does
 
-Ensure you have Python >=3.10 <=3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+Two agents collaborate to keep documentation in sync with application changes:
+1. **Documentation Writer** - Reviews and updates Mintlify documentation files
+2. **Screenshot Specialist** - Captures application screenshots using browser automation
 
-First, if you haven't already, install uv:
+When the documentation writer identifies screenshots that need updating, it delegates the task to the screenshot specialist, who navigates the web app, logs in, and captures the required screenshots.
+
+## Key Concepts
+
+- **Agent Delegation**: `allow_delegation=True` enables agents to delegate work to coworkers
+- **MCP Integration**: Uses `MCPServerAdapter` with `@playwright/mcp` for browser automation
+- **Scoped File Tools**: Secure file operations restricted to the docs directory
+- **Tool Handoff**: Screenshot paths are passed back so the writer can copy them to docs
+
+## Prerequisites
+
+- Node.js (for Playwright MCP server)
+- A running web application at `http://localhost:4100` (demo-app provided)
+
+### mcpadapt Compatibility
+
+This example requires a fix to the `mcpadapt` library for OpenAI schema validation. See [PR #80](https://github.com/grll/mcpadapt/pull/80) for details.
+
+The fix removes extra `Field()` kwargs that caused invalid JSON schemas with `None` values, which OpenAI's API rejects.
+
+## Setup
+
+1. Install dependencies:
+   ```bash
+   uv sync
+   ```
+
+2. Set environment variables in `.env`:
+   ```
+   OPENAI_API_KEY=your_key
+   ```
+
+3. Start the demo application:
+   ```bash
+   cd ../demo-app
+   npm install
+   npm run dev
+   ```
+
+## Running
 
 ```bash
-pip install uv
+DOCS_PATH=/path/to/demo-docs uv run docs_updater
 ```
 
-Next, navigate to your project directory and install the dependencies:
+The crew will:
+1. Read the documentation files
+2. Identify changes needed based on `latest_changes` input
+3. Delegate screenshot capture to the specialist
+4. Copy captured screenshots to the docs folder
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
+## Files
+
+- `src/docs_updater/crew.py` - Crew with MCP adapter setup and agent delegation
+- `src/docs_updater/config/agents.yaml` - Agent definitions with Playwright MCP workflow
+- `src/docs_updater/config/tasks.yaml` - Task with delegation instructions
+- `src/docs_updater/tools/scoped_file_tools.py` - Secure file tools for docs directory
+
+## Architecture
+
 ```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/docs_updater/config/agents.yaml` to define your agents
-- Modify `src/docs_updater/config/tasks.yaml` to define your tasks
-- Modify `src/docs_updater/crew.py` to add your own logic, tools and specific args
-- Modify `src/docs_updater/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
+┌─────────────────────┐
+│ Documentation Writer│
+│  (allow_delegation) │
+└──────────┬──────────┘
+           │ delegates
+           ▼
+┌─────────────────────┐     ┌─────────────────┐
+│Screenshot Specialist│────▶│ Playwright MCP  │
+│                     │     │ (browser tools) │
+└─────────────────────┘     └─────────────────┘
 ```
-
-This command initializes the docs_updater Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The docs_updater Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the DocsUpdater Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.

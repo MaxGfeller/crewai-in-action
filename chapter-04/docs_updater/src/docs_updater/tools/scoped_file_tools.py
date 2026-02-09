@@ -253,7 +253,7 @@ def get_scoped_file_tools(base_directory: str) -> list:
 
     tools = []
     for ToolClass in [ScopedDirectoryListTool, ScopedFileReadTool,
-                      ScopedFileWriteTool]:
+                      ScopedFileWriteTool, ScopedFileCopyTool]:
         tool = ToolClass()
         tool.base_directory = base_abs
         tools.append(tool)

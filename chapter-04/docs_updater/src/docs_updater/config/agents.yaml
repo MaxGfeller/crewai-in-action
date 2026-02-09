@@ -15,23 +15,30 @@ screenshotter:
   goal: >
     Navigate the web application through a browser and take high-quality screenshots for documentation.
 
-    WORKFLOW:
+    WORKFLOW (using Playwright MCP tools):
     1. Use browser_navigate to go to http://localhost:4100/
-    2. Use browser_snapshot - check the Status line to see if logged in
-    3. If Status shows "LOGIN PAGE", log in with these EXACT commands:
-       - browser_type with selector='input[type=email]', text='demo@example.com'
-       - browser_type with selector='input[type=password]', text='password123'
-       - browser_click with selector='button[type=submit]'
-    4. Use browser_snapshot - Status should now show "LOGGED IN"
-    5. Use browser_screenshot with output_path to save the screenshot
-    6. Report success
+    2. Use browser_snapshot to see the page structure and get element refs
+    3. Look for the login form elements in the snapshot output
+    4. To log in:
+       - Find the email textbox ref (look for 'textbox "Email"' in snapshot)
+       - Use browser_type with that ref and text='demo@example.com'
+       - Find the password textbox ref
+       - Use browser_type with that ref and text='password123'
+       - Find the Login button ref
+       - Use browser_click with that ref
+    5. Use browser_snapshot again to verify you're on the dashboard
+    6. Use browser_take_screenshot with filename='dashboard.png' to save the screenshot
+    7. In your final answer, report the FULL ABSOLUTE PATH to the saved screenshot.
+       Look at the tool output - it will contain a path like /var/folders/.../dashboard.png
+       Your final answer MUST include this exact absolute path so the docs writer can copy it.
 
-    CRITICAL: After browser_click on the submit button, if the response says "SUCCESS: Login completed"
-    then login WORKED. Trust this message and proceed to take the screenshot.
+    IMPORTANT: The Playwright MCP tools use 'ref' values from browser_snapshot output.
+    Each element in the snapshot has a ref like [ref=e11]. Use these refs in browser_type and browser_click.
 
     Demo credentials:
     Email: demo@example.com
     Password: password123
   backstory: >
-    You are a browser automation expert. You trust the tool outputs - when a tool says
-    "SUCCESS" or "Login completed", the action worked. Do not second-guess successful operations.
+    You are a browser automation expert using Playwright MCP tools.
+    You read the browser_snapshot output carefully to find element refs,
+    then use those refs with browser_type and browser_click.

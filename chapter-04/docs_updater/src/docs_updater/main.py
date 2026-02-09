@@ -1,15 +1,10 @@
 #!/usr/bin/env python
 import sys
 import warnings
-import atexit
 
 from docs_updater.crew import DocsUpdater
-from docs_updater.tools.browser_tools import close_browser
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
-
-# Ensure browser is closed on exit
-atexit.register(close_browser)
 
 
 def run():
@@ -26,10 +21,11 @@ def run():
         'latest_changes': 'In the dashboard, we have removed the average age column.',
     }
 
+    crew_instance = DocsUpdater(docs_base_directory=docs_path)
     try:
-        DocsUpdater(docs_base_directory=docs_path).crew().kickoff(inputs=inputs)
+        crew_instance.crew().kickoff(inputs=inputs)
     finally:
-        close_browser()
+        crew_instance.close()
 
 
 def train():
