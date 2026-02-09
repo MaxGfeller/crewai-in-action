@@ -1,54 +1,49 @@
-# SeoCrew Crew
+# Chapter 3: Multi-Agent SEO Content Pipeline
 
-Welcome to the SeoCrew Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This example demonstrates a multi-agent CrewAI crew that creates SEO-optimized blog content through collaborative research and writing.
 
-## Installation
+## What It Does
 
-Ensure you have Python >=3.10 <=3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+Three agents work sequentially to produce a blog post:
+1. **Keyword Researcher** - Analyzes competitors to find high-value keywords
+2. **Topic Researcher** - Selects a topic incorporating the best keywords
+3. **Blog Post Writer** - Writes an engaging, SEO-optimized post with generated images
 
-First, if you haven't already, install uv:
+## Key Concepts
+
+- **Multi-Agent Crew**: Three specialized agents with distinct roles
+- **Sequential Process**: Tasks execute in order, each building on previous outputs
+- **Knowledge Sources**: Crew has access to `about-us.md` and `competitors.json`
+- **Custom Tools**: `ImageGenerationTool` creates images for the blog post
+
+## Setup
+
+1. Install dependencies:
+   ```bash
+   uv sync
+   ```
+
+2. Set environment variables in `.env`:
+   ```
+   OPENAI_API_KEY=your_key
+   SERPER_API_KEY=your_key
+   ```
+
+3. Create knowledge files:
+   - `knowledge/about-us.md` - Company background
+   - `knowledge/competitors.json` - Competitor URLs to analyze
+
+## Running
 
 ```bash
-pip install uv
+uv run seo_crew
 ```
 
-Next, navigate to your project directory and install the dependencies:
+The crew will research keywords, select a topic, and write a blog post saved to `blog_post.md`.
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+## Files
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/seo_crew/config/agents.yaml` to define your agents
-- Modify `src/seo_crew/config/tasks.yaml` to define your tasks
-- Modify `src/seo_crew/crew.py` to add your own logic, tools and specific args
-- Modify `src/seo_crew/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
-```
-
-This command initializes the seo_crew Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The seo_crew Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the SeoCrew Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+- `src/seo_crew/crew.py` - Crew definition with agents, tasks, and knowledge config
+- `src/seo_crew/config/agents.yaml` - Agent role definitions
+- `src/seo_crew/config/tasks.yaml` - Task descriptions
+- `src/seo_crew/tools/image_generation_tool.py` - Custom image generation tool
