@@ -1,0 +1,11 @@
+{
+  "name": "demo-docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "mint dev --port 4200"
+  },
+  "devDependencies": {
+    "mint": "~4.2.407"
+  }
+}
