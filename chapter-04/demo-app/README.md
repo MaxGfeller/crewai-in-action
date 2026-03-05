@@ -45,7 +45,7 @@ Start the development server:
 npm run dev
 ```
 
-Open [http://localhost:5000](http://localhost:5000) in your browser.
+Open [http://localhost:4100](http://localhost:4100) in your browser.
 
 ## Features
 
