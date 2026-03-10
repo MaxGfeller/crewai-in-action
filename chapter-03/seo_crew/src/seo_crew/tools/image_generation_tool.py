@@ -1,4 +1,4 @@
-from typing import Type, Optional
+from typing import Type
 from datetime import datetime
 from pydantic import BaseModel, Field
 from crewai.tools import BaseTool
