@@ -91,7 +91,7 @@ async def update_docs(changes_description: str) -> str:
 
     # Run sync crew code in thread pool to avoid blocking asyncio
     # and to allow Playwright sync API to work
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     result = await loop.run_in_executor(
         _executor,
         _run_crew_sync,
