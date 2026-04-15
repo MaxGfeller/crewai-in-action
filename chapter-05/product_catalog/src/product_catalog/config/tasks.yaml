@@ -1,0 +1,37 @@
+image_analysis_task:
+  description: >
+    Analyze the provided product image and extract detailed information
+    about the product. The image has been attached. Identify the product category, colors,
+    materials, any visible text or branding, estimated dimensions, condition,
+    and notable features. Be precise and thorough — your analysis will be
+    used to generate the product listing.
+  expected_output: >
+    A structured analysis of the product including category, colors,
+    materials, visible text, estimated dimensions, condition, notable
+    features, and brand indicators.
+  agent: image_analyzer
+
+description_writing_task:
+  description: >
+    Based on the image analysis, create an optimized product listing.
+    Write a compelling title, detailed description, bullet points
+    highlighting key selling points, and relevant SEO keywords. The
+    listing should be professional, accurate, and persuasive.
+  expected_output: >
+    A complete product listing with title, description, bullet points,
+    SEO keywords, and suggested marketplace category.
+  agent: description_writer
+
+catalog_analysis_task:
+  description: >
+    Search the existing product catalog for items similar to the new product.
+    Use the Catalog Similarity Search tool with the product image at
+    {image_path} and the product description from the previous task.
+
+    For each similar product found, note the key differences compared to the
+    new product. Based on the prices of similar items in our catalog, suggest
+    an appropriate price range for the new product.
+  expected_output: >
+    A list of similar products from our catalog with similarity scores, key
+    differences, and a suggested price range based on comparable items.
+  agent: catalog_analyst

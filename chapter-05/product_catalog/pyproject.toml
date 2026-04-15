@@ -1,0 +1,29 @@
+[project]
+name = "product_catalog"
+version = "0.1.0"
+description = "Multimodal product catalog manager using CrewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=1.9.0",
+    "crewai[file-processing]",
+    "crewai[google-genai]",
+    "google-genai",
+    "chromadb",
+    "numpy",
+]
+
+[project.scripts]
+product_catalog = "product_catalog.main:run"
+run_crew = "product_catalog.main:run"
+train = "product_catalog.main:train"
+replay = "product_catalog.main:replay"
+test = "product_catalog.main:test"
+build_index = "product_catalog.main:build_index"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/product_catalog"]

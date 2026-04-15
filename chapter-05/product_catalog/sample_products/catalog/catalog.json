@@ -1,0 +1,98 @@
+[
+  {
+    "id": "prod_001",
+    "title": "Classic Analog Wristwatch",
+    "description": "Minimalist analog watch with leather strap and gold-tone case. Water-resistant design with scratch-resistant glass, perfect for everyday wear or formal occasions.",
+    "price": 89.99,
+    "category": "Accessories",
+    "image": "watch.jpg"
+  },
+  {
+    "id": "prod_002",
+    "title": "Retro Aviator Sunglasses",
+    "description": "Classic aviator-style sunglasses with UV400 protection and gradient tinted lenses. Lightweight metal frame with adjustable nose pads for a comfortable fit.",
+    "price": 34.99,
+    "category": "Accessories",
+    "image": "sunglasses.jpg"
+  },
+  {
+    "id": "prod_003",
+    "title": "Premium Eau de Parfum",
+    "description": "Luxury fragrance in an elegant glass bottle. Long-lasting scent with notes of citrus, jasmine, and sandalwood. Includes decorative cap and presentation box.",
+    "price": 129.99,
+    "category": "Beauty",
+    "image": "perfume.jpg"
+  },
+  {
+    "id": "prod_004",
+    "title": "Over-Ear Studio Headphones",
+    "description": "Professional-grade over-ear headphones with cushioned ear cups and adjustable headband. Rich bass and clear highs with passive noise isolation.",
+    "price": 199.99,
+    "category": "Electronics",
+    "image": "headphones.jpg"
+  },
+  {
+    "id": "prod_005",
+    "title": "Vintage Film Camera",
+    "description": "Compact 35mm film camera with built-in flash and automatic exposure. Classic design with modern reliability, ideal for street photography and travel.",
+    "price": 249.99,
+    "category": "Electronics",
+    "image": "camera.jpg"
+  },
+  {
+    "id": "prod_006",
+    "title": "Mechanical Gaming Keyboard",
+    "description": "Full-size mechanical keyboard with RGB backlighting and tactile switches. Programmable macro keys, USB-C connection, and detachable wrist rest.",
+    "price": 149.99,
+    "category": "Electronics",
+    "image": "keyboard.jpg"
+  },
+  {
+    "id": "prod_007",
+    "title": "Classic White Sneaker",
+    "description": "Clean white leather sneaker with cushioned sole and breathable lining. Versatile low-top design pairs with casual and smart-casual outfits.",
+    "price": 79.99,
+    "category": "Footwear",
+    "image": "sneaker-white.jpg"
+  },
+  {
+    "id": "prod_008",
+    "title": "Leather Crossbody Handbag",
+    "description": "Genuine leather crossbody bag with adjustable strap and multiple compartments. Magnetic closure, interior zip pocket, and polished hardware accents.",
+    "price": 159.99,
+    "category": "Bags",
+    "image": "handbag.jpg"
+  },
+  {
+    "id": "prod_009",
+    "title": "Urban Travel Backpack",
+    "description": "Durable everyday backpack with padded laptop compartment and multiple organizer pockets. Water-resistant fabric with reinforced stitching.",
+    "price": 69.99,
+    "category": "Bags",
+    "image": "backpack.jpg"
+  },
+  {
+    "id": "prod_010",
+    "title": "Handcrafted Ceramic Coffee Mug",
+    "description": "Artisan-style ceramic mug with comfortable handle and smooth glaze finish. Microwave and dishwasher safe, holds 12 oz.",
+    "price": 24.99,
+    "category": "Kitchen",
+    "image": "coffee-mug.jpg"
+  },
+  {
+    "id": "prod_011",
+    "title": "Insulated Stainless Steel Water Bottle",
+    "description": "Double-wall vacuum insulated bottle that keeps drinks cold 24 hours or hot 12 hours. Leak-proof lid with carry loop, BPA-free, 750ml capacity.",
+    "price": 34.99,
+    "category": "Kitchen",
+    "image": "water-bottle.jpg"
+  },
+  {
+    "id": "prod_012",
+    "title": "Essential Cotton T-Shirt Pack",
+    "description": "Set of premium cotton t-shirts in assorted colors. Pre-shrunk fabric with reinforced crew neck and double-stitched hems.",
+    "price": 29.99,
+    "category": "Clothing",
+    "image": "tshirts.jpg"
+  }
+]
