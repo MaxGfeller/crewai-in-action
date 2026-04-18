@@ -26,8 +26,17 @@ class DocsUpdater():
 				args=["@playwright/mcp@latest"],
 				env=os.environ.copy(),
 			)
-			self._mcp_adapter = MCPServerAdapter(server_params, connect_timeout=60)
-			self._browser_tools = list(self._mcp_adapter.__enter__())
+			adapter = MCPServerAdapter(server_params, connect_timeout=60)
+			try:
+				self._browser_tools = list(adapter.__enter__())
+				self._mcp_adapter = adapter
+			except Exception:
+				# Ensure the adapter/subprocess is cleaned up if startup fails
+				try:
+					adapter.__exit__(None, None, None)
+				except Exception:
+					pass
+				raise
 		return self._browser_tools
 
 	def close(self):

@@ -6,8 +6,8 @@ from seo_crew.tools.image_generation_tool import ImageGenerationTool
 from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledgeSource
 from crewai.knowledge.source.json_knowledge_source import JSONKnowledgeSource
 
-about_us_md = TextFileKnowledgeSource(file_paths=["about-us.md"])
-competitors_json = JSONKnowledgeSource(file_paths=["competitors.json"])
+about_us_md = TextFileKnowledgeSource(file_paths=["knowledge/about-us.md"])
+competitors_json = JSONKnowledgeSource(file_paths=["knowledge/competitors.json"])
 
 knowledge_config = KnowledgeConfig(results_limit=30, score_threshold=0.4)
 
