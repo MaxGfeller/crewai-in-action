@@ -2,26 +2,40 @@
 
 import json
 import os
+import sys
 import time
+from pathlib import Path
 
 import chromadb
 import numpy as np
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-CATALOG_DIR = "sample_products/catalog"
-INDEX_PATH = "data/catalog_index"
+# Resolve paths against the project root so the script works regardless of CWD.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+CATALOG_DIR = PROJECT_ROOT / "sample_products" / "catalog"
+INDEX_PATH = PROJECT_ROOT / "data" / "catalog_index"
 EMBEDDING_MODEL = "gemini-embedding-2-preview"
 EMBEDDING_DIMS = 768
 
 
 def main():
-    client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
+    load_dotenv(PROJECT_ROOT / ".env")
 
-    with open(f"{CATALOG_DIR}/catalog.json") as f:
+    api_key = os.environ.get("GOOGLE_API_KEY")
+    if not api_key:
+        sys.exit(
+            "Error: GOOGLE_API_KEY is not set. Copy .env.example to .env and add "
+            "your key, or export it in your shell."
+        )
+
+    client = genai.Client(api_key=api_key)
+
+    with open(CATALOG_DIR / "catalog.json") as f:
         catalog = json.load(f)
 
-    db = chromadb.PersistentClient(path=INDEX_PATH)
+    db = chromadb.PersistentClient(path=str(INDEX_PATH))
 
     collection = db.get_or_create_collection(
         "products", metadata={"hnsw:space": "cosine"}
@@ -34,7 +48,7 @@ def main():
             print(f"  Skipped (exists): {product['title']}")
             continue
 
-        image_path = f"{CATALOG_DIR}/{product['image']}"
+        image_path = CATALOG_DIR / product["image"]
         with open(image_path, "rb") as f:
             image_bytes = f.read()
 
