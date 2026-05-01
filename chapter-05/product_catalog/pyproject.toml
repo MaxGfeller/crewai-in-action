@@ -15,10 +15,6 @@ dependencies = [
 
 [project.scripts]
 product_catalog = "product_catalog.main:run"
-run_crew = "product_catalog.main:run"
-train = "product_catalog.main:train"
-replay = "product_catalog.main:replay"
-test = "product_catalog.main:test"
 build_index = "product_catalog.main:build_index"
 
 [build-system]
