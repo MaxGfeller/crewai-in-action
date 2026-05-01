@@ -1,8 +1,15 @@
 import sys
+from pathlib import Path
 
 from crewai_files import ImageFile
+from dotenv import load_dotenv
 
 from product_catalog.crew import ProductCatalogCrew
+
+# Load environment variables from .env at the project root so the crew and tools
+# can read GOOGLE_API_KEY without requiring the user to export it manually.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(PROJECT_ROOT / ".env")
 
 
 def run():
