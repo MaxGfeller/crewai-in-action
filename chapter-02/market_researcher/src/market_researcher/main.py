@@ -66,6 +66,6 @@ class MarketResearch(BaseModel):
     positioning: Positioning
 
 prompt = build_market_research_prompt(product_category="electric bikes")
-report = agent.kickoff(prompt)
+report = agent.kickoff(prompt, response_format=MarketResearch)
 
 print(report)
