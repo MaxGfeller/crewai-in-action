@@ -1,0 +1,62 @@
+[
+  {
+    "id": "kb_001",
+    "theme": "billing",
+    "title": "Understanding your monthly invoice",
+    "body": "Your monthly invoice lists each subscription line, add-ons, and refunds. Refunds appear as negative lines and reduce the total. If you see two charges in the same month, one is typically a renewal and the other an add-on. Check Settings > Billing > Invoices for a full breakdown."
+  },
+  {
+    "id": "kb_002",
+    "theme": "billing",
+    "title": "Requesting a refund for accidental charges",
+    "body": "If you were charged in error - for example a free-plan user receiving a paid charge - open Settings > Billing > Invoices, find the line, and click Request refund. Refunds normally process within 3 to 5 business days. Our team reviews each request before approval."
+  },
+  {
+    "id": "kb_003",
+    "theme": "billing",
+    "title": "Upgrading from Free to Pro",
+    "body": "To upgrade, go to Settings > Plan and click Upgrade to Pro. You can choose monthly ($15/seat/mo) or annual (saves ~20%). Payment is accepted via credit card and, on annual, bank transfer. Upgrades take effect immediately and are pro-rated."
+  },
+  {
+    "id": "kb_004",
+    "theme": "billing",
+    "title": "W-9 and tax documents",
+    "body": "US customers can download our W-9 from Settings > Billing > Documents. VAT and sales-tax handling depends on your region - we automatically apply the correct rate based on your billing address. For non-US tax forms, email finance@example.com."
+  },
+  {
+    "id": "kb_005",
+    "theme": "technical",
+    "title": "SSO with Okta via SAML",
+    "body": "Enterprise workspaces can configure SAML SSO with Okta. In Okta, create a new SAML 2.0 app. Use the Entity ID found at Admin > Security > SSO. Map NameID to email. No IP allowlisting is required. After setup, assign users in Okta and they will see the workspace in their Okta dashboard."
+  },
+  {
+    "id": "kb_006",
+    "theme": "technical",
+    "title": "Custom domain verification",
+    "body": "Custom domains require a CNAME pointing support.yourdomain.com to cname.example.com and a TXT record proving ownership. DNS propagation can take up to 24 hours. If verification hangs past that, run dig or nslookup to confirm the records are visible from the public internet, then click Re-check."
+  },
+  {
+    "id": "kb_007",
+    "theme": "technical",
+    "title": "Two-factor authentication loops after password reset",
+    "body": "If 2FA loops back to the code prompt after you submit a correct code, your device clock is likely out of sync. Re-sync your device time (Settings > Date & Time > Set automatically). If the problem persists, use a recovery code to log in and re-enroll 2FA."
+  },
+  {
+    "id": "kb_008",
+    "theme": "technical",
+    "title": "Handling 5xx errors from /exports",
+    "body": "Intermittent 5xx errors on /exports are usually caused by upstream capacity issues. Check status.example.com before retrying. Retry with exponential backoff (2, 4, 8, 16 seconds) and no more than 5 attempts. Our export pipeline is idempotent per job_id."
+  },
+  {
+    "id": "kb_009",
+    "theme": "feature",
+    "title": "How we handle feature requests",
+    "body": "We read every feature request. They feed into our quarterly roadmap reviews. You will not always get a commitment, but you will always get an acknowledgement with a reference number. Voting on existing requests at feedback.example.com also boosts priority."
+  },
+  {
+    "id": "kb_010",
+    "theme": "feature",
+    "title": "Exporting reports to CSV",
+    "body": "CSV export for reports is on our near-term roadmap (ETA Q3). In the meantime, PDF export is available via the Reports > Share menu, and the raw data is accessible through the Reports API."
+  }
+]

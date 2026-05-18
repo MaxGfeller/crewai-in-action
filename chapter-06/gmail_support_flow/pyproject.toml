@@ -1,0 +1,33 @@
+[project]
+name = "gmail_support_flow"
+version = "0.1.0"
+description = "Chapter 6 - Gmail support inbox triage and escalation with CrewAI Flows"
+authors = [{ name = "Max Gfeller", email = "mail@maxgfeller.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=1.9.0",
+    "crewai[google-genai]",
+    "google-genai",
+    "pydantic>=2.6",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "google-api-python-client>=2.120",
+    "google-auth>=2.29",
+    "google-auth-oauthlib>=1.2",
+    "slack-sdk>=3.27",
+]
+
+[project.scripts]
+gmail_support_flow = "gmail_support_flow.main:run"
+run_crew = "gmail_support_flow.main:run"
+run-one = "gmail_support_flow.main:run_one"
+plot = "gmail_support_flow.main:plot"
+replay = "gmail_support_flow.main:replay"
+test = "gmail_support_flow.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gmail_support_flow"]

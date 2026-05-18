@@ -1,0 +1,25 @@
+triage_task:
+  description: >
+    Classify the email below into one of billing, technical, feature_request,
+    spam, or needs_human. Consider the subject, the body, and the sender's
+    plan tier if given.
+
+    Thread subject: {subject}
+    From: {from_name} <{from_email}> (plan: {plan_tier}, VIP: {is_vip})
+    Body:
+    {body}
+
+    Return a TriageDecision with fields:
+      category           - one of the five labels above
+      confidence         - float 0..1
+      summary_one_line   - a single sentence summary of the ticket
+      detected_intent    - short imperative phrase, e.g. "request refund"
+      reasoning          - why you chose this category
+
+    Use category="needs_human" only for things a support agent must handle
+    in person (legal threats, churn risk, accusations). Use
+    category="spam" for obvious marketing or phishing. Use
+    category="feature_request" only for genuine product requests, not
+    complaints framed as wishes.
+  expected_output: "A TriageDecision JSON object."
+  agent: triage_classifier

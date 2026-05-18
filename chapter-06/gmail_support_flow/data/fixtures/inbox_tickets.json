@@ -1,0 +1,128 @@
+[
+  {
+    "thread_id": "t_001",
+    "from_email": "dan@umbrella.test",
+    "from_name": "Dan Wright",
+    "subject": "Refund request - accidental charge",
+    "body": "Hi, I was charged $129 on my card ending 4242 but I am on the free plan. Can you refund this? Thanks, Dan",
+    "received_at": "2026-04-19T09:00:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_002",
+    "from_email": "carla@initech.test",
+    "from_name": "Carla Schmidt",
+    "subject": "Dashboard is slow this morning",
+    "body": "The dashboard takes 30+ seconds to load. This started about an hour ago. I am on Pro. Any ideas?",
+    "received_at": "2026-04-19T09:05:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_003",
+    "from_email": "alice@acme.test",
+    "from_name": "Alice Nakamura",
+    "subject": "Question about my invoice for April",
+    "body": "Hello, I see two charges on my April invoice - one for the Pro renewal and one for a priority email add-on that I think was refunded. Can you confirm my balance?",
+    "received_at": "2026-04-19T09:10:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_004",
+    "from_email": "bob@globex.test",
+    "from_name": "Bob Ortega",
+    "subject": "SSO with Okta - SAML configuration help",
+    "body": "We are trying to wire up Okta SAML for our Enterprise workspace at Globex. Are the entity IDs documented somewhere? Also, do we need to whitelist any IPs?",
+    "received_at": "2026-04-19T09:12:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_005",
+    "from_email": "felix@piedpiper.test",
+    "from_name": "Felix Mendez",
+    "subject": "Feature request: CSV export on reports",
+    "body": "Hey team - it would be great if we could export our saved reports to CSV, not just PDF. We share numbers with our finance folks who live in spreadsheets.",
+    "received_at": "2026-04-19T09:15:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_006",
+    "from_email": "spammer@lotsofoffers.test",
+    "from_name": "Ultra Deals",
+    "subject": "\ud83d\udd25 LIMITED TIME: 90% off SEO tools now",
+    "body": "Hi! We think you would love our SEO suite. Click here to claim your exclusive 90% discount before midnight! Unsubscribe here.",
+    "received_at": "2026-04-19T09:20:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_007",
+    "from_email": "greta@tyrell.test",
+    "from_name": "Greta Rasmussen",
+    "subject": "How do I upgrade to Pro?",
+    "body": "Hi, I am on the free plan and want to try Pro. Where do I enter my card details? Do you offer monthly or only annual?",
+    "received_at": "2026-04-19T09:25:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_008",
+    "from_email": "hiro@wayne.test",
+    "from_name": "Hiro Tanaka",
+    "subject": "Custom domain stuck on 'pending verification'",
+    "body": "I added support.wayne.example two days ago and it still shows 'pending verification' in the dashboard. The DNS records look correct on my side. Any logs I should check?",
+    "received_at": "2026-04-19T09:30:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_009",
+    "from_email": "erin@hooli.test",
+    "from_name": "Erin Olofsson",
+    "subject": "API exports returning 500 this morning",
+    "body": "Our nightly export job failed three times overnight with 500 responses on /exports. Is there an active incident? We are on Enterprise.",
+    "received_at": "2026-04-19T09:35:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_010",
+    "from_email": "alice@acme.test",
+    "from_name": "Alice Nakamura",
+    "subject": "Feature request: bulk reassign seats",
+    "body": "We are reshuffling teams at Acme. Right now I have to reassign seats one at a time - a bulk reassign UI would save me hours.",
+    "received_at": "2026-04-19T09:40:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_011",
+    "from_email": "bob@globex.test",
+    "from_name": "Bob Ortega",
+    "subject": "Advanced reporting broke after this morning's update",
+    "body": "KB-POISON - our whole reporting module is down since 08:00 UTC. Charts are empty and every filter returns zero rows. This is blocking a board meeting. Please escalate.",
+    "received_at": "2026-04-19T09:45:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_012",
+    "from_email": "deals@betterproducts.test",
+    "from_name": "Better Products",
+    "subject": "Win a free trip to Bali",
+    "body": "You have been selected as a winner! Click the link below to claim your prize. This offer expires soon.",
+    "received_at": "2026-04-19T09:50:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_013",
+    "from_email": "carla@initech.test",
+    "from_name": "Carla Schmidt",
+    "subject": "Can I get a W-9 for Initech?",
+    "body": "Our finance team needs a completed W-9 on file for you. Can someone send it over? We pay monthly on the Pro plan.",
+    "received_at": "2026-04-19T09:55:00Z",
+    "labels": ["book-support-demo"]
+  },
+  {
+    "thread_id": "t_014",
+    "from_email": "felix@piedpiper.test",
+    "from_name": "Felix Mendez",
+    "subject": "Sudden 2FA loop after password reset",
+    "body": "I reset my password an hour ago and now I cannot get past the 2FA screen - it just loops back to the code prompt after I submit. Chrome latest, desktop.",
+    "received_at": "2026-04-19T10:00:00Z",
+    "labels": ["book-support-demo"]
+  }
+]

@@ -1,0 +1,20 @@
+escalation_task:
+  description: >
+    Produce a Slack-ready escalation summary for the on-call engineer.
+    Include the customer name, plan tier, VIP status, the triage category,
+    the last error we observed, and the route history.
+
+    Thread subject: {subject}
+    From: {from_name} <{from_email}> (plan: {plan_tier}, VIP: {is_vip})
+    Body:
+    {body}
+    Last error: {last_error}
+    Route history (compact): {route_history_compact}
+
+    Return an EscalationSummary:
+      title           - a crisp one-liner, e.g. "VIP blocked on reporting outage"
+      body_markdown   - 3-6 lines of markdown with the key facts
+      severity        - one of low, medium, high (use high only for VIPs
+                        blocked by an outage or similar)
+  expected_output: "An EscalationSummary JSON object."
+  agent: escalation_writer

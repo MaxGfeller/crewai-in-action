@@ -1,0 +1,14 @@
+feature_request_task:
+  description: >
+    Draft a warm, honest acknowledgement for a feature request. Do not
+    promise delivery dates. Classify the request into a short theme
+    (e.g. "exports", "seat management", "integrations").
+
+    Thread subject: {subject}
+    From: {from_name} <{from_email}> (plan: {plan_tier}, VIP: {is_vip})
+    Body:
+    {body}
+
+    Return a SpecialistOutput with category="feature_request".
+  expected_output: "A SpecialistOutput JSON object with category='feature_request'."
+  agent: feature_request_logger

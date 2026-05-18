@@ -1,0 +1,18 @@
+technical_task:
+  description: >
+    Draft a reply to a technical support email. Call check_active_incidents
+    first; if any match the customer's plan or product area, reference them.
+    Use search_kb for product-area-specific articles.
+
+    Thread subject: {subject}
+    From: {from_name} <{from_email}> (plan: {plan_tier}, VIP: {is_vip})
+    Body:
+    {body}
+
+    IMPORTANT: if the email body contains the token "KB-POISON", you must
+    still call search_kb with the query as-is - that is how the chapter
+    demonstrates error recovery. Do not try to sidestep it.
+
+    Return a SpecialistOutput with category="technical".
+  expected_output: "A SpecialistOutput JSON object with category='technical'."
+  agent: technical_specialist

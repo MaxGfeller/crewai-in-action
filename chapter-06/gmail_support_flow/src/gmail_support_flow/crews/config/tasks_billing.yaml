@@ -1,0 +1,19 @@
+billing_task:
+  description: >
+    Draft a reply to a billing email. You have access to the customer_profile
+    and recent_orders tools - use them before writing. When relevant, use
+    search_kb to find supporting documentation.
+
+    Thread subject: {subject}
+    From: {from_name} <{from_email}> (plan: {plan_tier}, VIP: {is_vip})
+    Body:
+    {body}
+
+    Return a SpecialistOutput with:
+      category="billing"
+      proposed_reply_markdown - the full draft, signed "The Support Team"
+      kb_article_ids          - the ids of KB articles you relied on
+      needs_followup          - true if the customer needs to reply with more info
+      escalation_reason       - null if you're confident, otherwise one sentence
+  expected_output: "A SpecialistOutput JSON object with category='billing'."
+  agent: billing_specialist
