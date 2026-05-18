@@ -19,6 +19,7 @@ try:
     from google.oauth2.credentials import Credentials
     from google_auth_oauthlib.flow import InstalledAppFlow
     from googleapiclient.discovery import build
+    from googleapiclient.errors import HttpError
 except Exception as exc:  # pragma: no cover - only raised in real mode
     build = None  # type: ignore[assignment]
     _IMPORT_ERROR: Exception | None = exc
@@ -31,6 +32,23 @@ SCOPES = [
     # `gmail.modify` is enough to list, label, and create drafts.
     # We intentionally do NOT request `gmail.send` - see chapter 9 (HITL).
 ]
+
+SYSTEM_LABEL_IDS = {
+    "inbox": "INBOX",
+    "spam": "SPAM",
+    "trash": "TRASH",
+    "unread": "UNREAD",
+    "starred": "STARRED",
+    "important": "IMPORTANT",
+    "sent": "SENT",
+    "draft": "DRAFT",
+    "drafts": "DRAFT",
+    "category_personal": "CATEGORY_PERSONAL",
+    "category_social": "CATEGORY_SOCIAL",
+    "category_promotions": "CATEGORY_PROMOTIONS",
+    "category_updates": "CATEGORY_UPDATES",
+    "category_forums": "CATEGORY_FORUMS",
+}
 
 
 class GmailReal:
@@ -70,23 +88,30 @@ class GmailReal:
     # ------------------------------------------------------------------
     # GmailProvider surface
     # ------------------------------------------------------------------
-    def list_unread(self, label: str, max_results: int = 20) -> list[dict]:
-        query = "is:unread"
+    def list_threads(
+        self, label: str, max_results: int = 20, unread_only: bool = False
+    ) -> list[dict]:
+        query = "is:unread" if unread_only else ""
         if label:
-            query += f" label:{label}"
+            query = f"{query} {self._label_query(label)}".strip()
         resp = self._service.users().messages().list(
             userId=self._user, q=query, maxResults=max_results
         ).execute()
         out: list[dict] = []
+        seen_thread_ids: set[str] = set()
         for hit in resp.get("messages", []):
             msg = self._service.users().messages().get(
                 userId=self._user, id=hit["id"], format="metadata",
                 metadataHeaders=["From", "Subject", "Date"],
             ).execute()
+            thread_id = msg["threadId"]
+            if thread_id in seen_thread_ids:
+                continue
+            seen_thread_ids.add(thread_id)
             headers = {h["name"]: h["value"] for h in msg["payload"]["headers"]}
-            body = self._fetch_body(msg["threadId"])
+            body = self._fetch_body(thread_id)
             out.append({
-                "thread_id": msg["threadId"],
+                "thread_id": thread_id,
                 "from_email": self._parse_email(headers.get("From", "")),
                 "from_name": self._parse_name(headers.get("From", "")),
                 "subject": headers.get("Subject", ""),
@@ -96,11 +121,24 @@ class GmailReal:
             })
         return out
 
+    def list_unread(self, label: str, max_results: int = 20) -> list[dict]:
+        return self.list_threads(label=label, max_results=max_results, unread_only=True)
+
     def thread_by_id(self, thread_id: str) -> dict | None:
         try:
             thread = self._service.users().threads().get(
                 userId=self._user, id=thread_id, format="full"
             ).execute()
+        except HttpError as exc:
+            status = getattr(exc.resp, "status", "?")
+            reason = getattr(exc.resp, "reason", "unknown error")
+            if status == 404:
+                return None
+            raise RuntimeError(
+                f"Gmail API rejected thread id {thread_id!r} ({status} {reason}). "
+                "Use the API thread id shown by `uv run list-gmail-threads`, "
+                "not the Gmail web URL id."
+            ) from exc
         except Exception:
             return None
         first = thread["messages"][0]
@@ -161,14 +199,29 @@ class GmailReal:
     # Helpers
     # ------------------------------------------------------------------
     def _ensure_label(self, name: str) -> str:
+        cleaned = name.strip()
+        if not cleaned:
+            raise ValueError("Gmail label name cannot be empty")
         resp = self._service.users().labels().list(userId=self._user).execute()
         for lbl in resp.get("labels", []):
-            if lbl["name"] == name:
+            if lbl["id"] == cleaned or lbl["name"] == cleaned:
                 return lbl["id"]
+            if lbl["name"].casefold() == cleaned.casefold():
+                return lbl["id"]
+        system_label_id = SYSTEM_LABEL_IDS.get(cleaned.casefold())
+        if system_label_id:
+            return system_label_id
         created = self._service.users().labels().create(
-            userId=self._user, body={"name": name}
+            userId=self._user, body={"name": cleaned}
         ).execute()
         return created["id"]
+
+    @staticmethod
+    def _label_query(label: str) -> str:
+        if any(ch.isspace() for ch in label):
+            escaped = label.replace("\\", "\\\\").replace('"', '\\"')
+            return f'label:"{escaped}"'
+        return f"label:{label}"
 
     def _fetch_body(self, thread_id: str) -> str:
         thread = self._service.users().threads().get(

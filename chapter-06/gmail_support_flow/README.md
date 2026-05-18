@@ -92,7 +92,15 @@ The Flow uses OAuth for a desktop "installed app" — simpler than a service acc
    GMAIL_USER_EMAIL=you@example.com
    GMAIL_LABEL=book-support-demo
    ```
-7. **First run opens a browser** for consent. `uv run run-one --thread-id <id>` (use a thread id from a real labelled email, viewable in Gmail's URL bar as `#inbox/<threadId>`) will launch a consent window, then cache the token to `artifacts/gmail_token.json` for future runs. Re-running does not re-prompt.
+7. **First run opens a browser** for consent. Start by listing the Gmail API thread ids for your labelled messages:
+   ```bash
+   uv run list-gmail-threads
+   ```
+   Then process one of those ids:
+   ```bash
+   uv run run-one --thread-id <api-thread-id>
+   ```
+   Gmail's web URL uses a different id format, so don't copy the `FMfc...` value from the browser address bar. The first real-mode command caches the token to `artifacts/gmail_token.json` for future runs. Re-running does not re-prompt.
 
 Scopes requested: **`gmail.modify` only** — enough to list, label, and create drafts. `gmail.send` is deliberately not requested.
 

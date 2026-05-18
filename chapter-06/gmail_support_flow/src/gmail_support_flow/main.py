@@ -5,6 +5,7 @@ to the verification plan at the bottom of the chapter:
 
 - ``uv run gmail_support_flow``       → :func:`run` (whole inbox)
 - ``uv run run-one -- --thread-id T`` → :func:`run_one`
+- ``uv run list-gmail-threads``       → :func:`list_gmail_threads`
 - ``uv run plot``                     → :func:`plot`
 - ``uv run replay -- --flow-id ID``   → :func:`replay`
 - ``uv run test``                     → :func:`test`
@@ -240,6 +241,53 @@ def run() -> None:
 
 
 # ---------------------------------------------------------------------------
+# list-gmail-threads
+# ---------------------------------------------------------------------------
+
+
+def list_gmail_threads() -> None:
+    """Print API thread ids for labelled Gmail threads."""
+    parser = argparse.ArgumentParser(
+        description="List Gmail API thread ids for threads matching a label."
+    )
+    parser.add_argument(
+        "--label",
+        default=os.getenv("GMAIL_LABEL", "book-support-demo"),
+        help="Gmail label to search. Defaults to GMAIL_LABEL.",
+    )
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=20,
+        help="Maximum number of matching messages to inspect.",
+    )
+    parser.add_argument(
+        "--unread-only",
+        action="store_true",
+        help="Only show unread threads, matching the batch runner.",
+    )
+    args = parser.parse_args()
+
+    from gmail_support_flow.providers import get_gmail_provider
+
+    provider = get_gmail_provider()
+    threads = provider.list_threads(
+        label=args.label, max_results=args.limit, unread_only=args.unread_only
+    )
+    if not threads:
+        qualifier = " unread" if args.unread_only else ""
+        print(f"[main] no{qualifier} threads found for label={args.label!r}")
+        return
+
+    print(f"{'thread_id':<24} {'from':<32} subject")
+    print(f"{'-' * 24} {'-' * 32} {'-' * 40}")
+    for payload in threads:
+        sender = payload.get("from_email", "")[:32]
+        subject = payload.get("subject", "")
+        print(f"{payload['thread_id']:<24} {sender:<32} {subject}")
+
+
+# ---------------------------------------------------------------------------
 # replay
 # ---------------------------------------------------------------------------
 
@@ -337,6 +385,7 @@ if __name__ == "__main__":
         "run": run,
         "run_crew": run,
         "run-one": run_one,
+        "list-gmail-threads": list_gmail_threads,
         "plot": plot,
         "replay": replay,
         "test": test,

@@ -52,10 +52,12 @@ class GmailFake:
     # ------------------------------------------------------------------
     # GmailProvider surface
     # ------------------------------------------------------------------
-    def list_unread(self, label: str, max_results: int = 20) -> list[dict]:
+    def list_threads(
+        self, label: str, max_results: int = 20, unread_only: bool = False
+    ) -> list[dict]:
         hits: list[dict] = []
         for t in self._threads.values():
-            if t.get("read"):
+            if unread_only and t.get("read"):
                 continue
             if label and label not in t["labels"]:
                 continue
@@ -63,6 +65,9 @@ class GmailFake:
             if len(hits) >= max_results:
                 break
         return hits
+
+    def list_unread(self, label: str, max_results: int = 20) -> list[dict]:
+        return self.list_threads(label=label, max_results=max_results, unread_only=True)
 
     def thread_by_id(self, thread_id: str) -> Optional[dict]:
         t = self._threads.get(thread_id)

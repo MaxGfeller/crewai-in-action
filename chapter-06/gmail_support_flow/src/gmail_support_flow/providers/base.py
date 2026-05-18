@@ -12,6 +12,11 @@ from typing import Protocol
 class GmailProvider(Protocol):
     """Minimal Gmail API surface the Flow needs. Never sends email."""
 
+    def list_threads(
+        self, label: str, max_results: int = 20, unread_only: bool = False
+    ) -> list[dict]:
+        ...
+
     def list_unread(self, label: str, max_results: int = 20) -> list[dict]:
         ...
 

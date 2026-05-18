@@ -21,6 +21,7 @@ dependencies = [
 gmail_support_flow = "gmail_support_flow.main:run"
 run_crew = "gmail_support_flow.main:run"
 run-one = "gmail_support_flow.main:run_one"
+list-gmail-threads = "gmail_support_flow.main:list_gmail_threads"
 plot = "gmail_support_flow.main:plot"
 replay = "gmail_support_flow.main:replay"
 test = "gmail_support_flow.main:test"
