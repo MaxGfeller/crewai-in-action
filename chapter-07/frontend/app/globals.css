@@ -1,0 +1,766 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f7f5;
+  --panel: #ffffff;
+  --panel-strong: #edf2ee;
+  --ink: #17201c;
+  --muted: #64706a;
+  --line: #dbe4de;
+  --accent: #0b6b5f;
+  --accent-2: #b63d2b;
+  --accent-3: #4f6fa8;
+  --ok: #1b7a45;
+  --warn: #9a6200;
+  --risk: #b3261e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--ink);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.ck-powered-by,
+.copilotKitPoweredBy {
+  display: none !important;
+}
+
+.workspace {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.topbar {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  margin: 0 auto 18px;
+  max-width: 1600px;
+}
+
+.topbarControls {
+  align-items: stretch;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.topbarControls .accountMenu {
+  width: 240px;
+}
+
+.topbarControls .accountMenuButton {
+  box-shadow: none;
+  min-height: 59px;
+  padding: 10px 12px;
+}
+
+.topbarControls .accountMenuButton span {
+  font-size: 15px;
+}
+
+.eyebrow {
+  color: var(--accent-2);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1.05;
+  margin-bottom: 0;
+}
+
+.runtime {
+  background: var(--ink);
+  color: var(--panel);
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+}
+
+.runtime span {
+  color: #d9cdbb;
+  font-size: 11px;
+}
+
+.runtime strong {
+  font-size: 13px;
+}
+
+.appGrid {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(220px, 260px) minmax(500px, 1.1fr) minmax(380px, 0.9fr);
+  margin: 0 auto;
+  max-width: 1600px;
+}
+
+.threadColumn,
+.conversationColumn,
+.workspaceColumn {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.threadColumn,
+.conversationColumn {
+  position: sticky;
+  top: 24px;
+}
+
+.threadPanel {
+  display: grid;
+  gap: 12px;
+  max-height: calc(100vh - 114px);
+  overflow: hidden;
+}
+
+.threadPanelHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.threadPanelHeader .panelHeader {
+  margin-bottom: 0;
+}
+
+.iconButton {
+  align-items: center;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
+.iconButton:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.threadList {
+  display: grid;
+  gap: 8px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.threadItem {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  text-align: left;
+}
+
+.threadItem:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.threadItem:disabled {
+  cursor: default;
+}
+
+.threadItemActive {
+  background: color-mix(in srgb, var(--accent) 10%, white);
+  border-color: var(--accent);
+}
+
+.threadItem strong {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.threadItem span {
+  color: var(--muted);
+  display: -webkit-box;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.threadItem small,
+.threadLoading {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 5px;
+  font-size: 11px;
+}
+
+.workspaceColumn {
+  align-content: start;
+}
+
+.chatPanel {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 114px);
+  min-height: 680px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.chatHeader {
+  border-bottom: 1px solid var(--line);
+  padding: 16px;
+}
+
+.chatHeader .panelHeader {
+  margin-bottom: 0;
+}
+
+.chatHeaderTitle h2 {
+  flex: 1;
+}
+
+.embeddedChat {
+  flex: 1;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 0;
+  position: relative;
+}
+
+.embeddedChat [data-testid="copilot-chat"],
+.embeddedChat .copilotKitChat {
+  background: transparent;
+  height: 100%;
+}
+
+.embeddedChat [data-testid="copilot-chat-input"] {
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.embeddedChat h1 {
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.embeddedChat p,
+.embeddedChat li {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.contextGrid {
+  align-items: start;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+  position: relative;
+}
+
+.workspacePanel {
+  display: grid;
+  gap: 12px;
+}
+
+.workspacePanelHeader {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.workspacePanelHeader h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.workspacePanelHeader span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.panel,
+.surface,
+.emptyCanvas {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(23, 32, 28, 0.055);
+  padding: 16px;
+}
+
+.panelHeader,
+.surface header {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.panelHeader h2,
+.surface h2 {
+  font-size: 18px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.brief {
+  display: grid;
+  gap: 10px;
+}
+
+.brief h3 {
+  font-size: 20px;
+  line-height: 1;
+  margin: 0;
+}
+
+.accountMenu {
+  min-width: 0;
+}
+
+.accountMenuButton {
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(23, 32, 28, 0.055);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  gap: 3px 9px;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 14px;
+  text-align: left;
+  width: 100%;
+}
+
+.accountMenuButton:hover,
+.accountMenuButton[aria-expanded="true"] {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.accountMenuButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.accountMenuButton svg {
+  grid-row: span 2;
+}
+
+.accountMenuButton span {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.accountMenuButton small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.accountPopover {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 38px rgba(23, 32, 28, 0.16);
+  display: grid;
+  gap: 8px;
+  max-width: 100%;
+  min-width: 0;
+  overflow: auto;
+  padding: 10px;
+  width: min(420px, calc(100vw - 24px));
+  z-index: 1000;
+}
+
+.accountOption {
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  gap: 8px;
+  padding: 9px;
+  text-align: left;
+}
+
+.accountOption:hover {
+  background: color-mix(in srgb, var(--accent) 7%, white);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.accountOptionName {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.accountOptionName strong {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.accountOptionDetails {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+}
+
+.accountOptionName small,
+.accountMeta {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.health {
+  color: white;
+  display: inline-flex;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  padding: 4px 7px;
+  width: max-content;
+}
+
+.health-healthy {
+  background: var(--ok);
+}
+
+.health-watch {
+  background: var(--warn);
+}
+
+.health-at_risk {
+  background: var(--risk);
+}
+
+.metricGrid {
+  display: grid;
+  gap: 8px;
+}
+
+.metric {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.metric span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.metric strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.actionItem button {
+  align-items: center;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6px;
+  font-size: 13px;
+  min-height: 32px;
+  padding: 7px 10px;
+}
+
+.actionItem button:hover {
+  background: color-mix(in srgb, var(--accent) 12%, white);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+
+.runStatus {
+  align-items: center;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  display: inline-flex;
+  gap: 7px;
+  font-size: 12px;
+  min-height: 32px;
+  padding: 7px 10px;
+}
+
+.spinIcon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.surfaceStack {
+  display: grid;
+  gap: 14px;
+}
+
+.emptyCanvas {
+  align-items: center;
+  display: grid;
+  min-height: 260px;
+  place-items: center;
+  text-align: center;
+}
+
+.emptyCanvas h2 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.emptyCanvas p,
+.empty {
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+.surface {
+  border-left: 5px solid var(--accent);
+}
+
+.accountSurface {
+  border-left-color: var(--accent-3);
+}
+
+.riskSurface {
+  border-left-color: var(--risk);
+}
+
+.supportSurface {
+  border-left-color: var(--warn);
+}
+
+.surface p,
+.surface li {
+  color: #3c352d;
+  line-height: 1.45;
+}
+
+.surface ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.surfaceGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tagRow span:not(.health) {
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  padding: 4px 7px;
+}
+
+.surfaceColumns {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.surfaceColumns h3 {
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.compactList {
+  display: grid;
+  gap: 7px;
+}
+
+.compactList div {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 2px;
+  padding-top: 7px;
+}
+
+.compactList strong {
+  font-size: 14px;
+}
+
+.compactList span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.surface pre {
+  background: var(--panel-strong);
+  font-size: 12px;
+  max-height: 300px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.slotList,
+.actionList {
+  display: grid;
+  gap: 8px;
+}
+
+.slot,
+.actionItem {
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  padding: 10px;
+}
+
+.actionItem {
+  display: grid;
+  gap: 10px;
+}
+
+.actionItem p {
+  color: var(--accent-3);
+  font-size: 11px;
+  margin: 0 0 4px;
+}
+
+.actionItem h3 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.actionItem button {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  justify-content: center;
+}
+
+.actionItem button:hover {
+  background: color-mix(in srgb, var(--accent) 86%, black);
+}
+
+.actionItem button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.actionItem button.approvedActionButton:disabled {
+  background: color-mix(in srgb, var(--accent) 72%, white);
+  cursor: default;
+  opacity: 1;
+}
+
+@media (max-width: 1180px) {
+  .appGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .threadColumn,
+  .conversationColumn {
+    position: static;
+  }
+
+  .threadPanel {
+    max-height: none;
+  }
+
+  .threadList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chatPanel {
+    height: 680px;
+  }
+
+  .contextGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .workspace {
+    padding: 12px;
+  }
+
+  .topbar {
+    align-items: stretch;
+    display: grid;
+    gap: 10px;
+  }
+
+  .topbarControls {
+    display: grid;
+  }
+
+  .topbarControls .accountMenu {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .contextGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .threadList {
+    grid-template-columns: 1fr;
+  }
+
+  .chatPanel {
+    height: 640px;
+    min-height: 0;
+  }
+
+  .surfaceColumns,
+  .surfaceGrid {
+    grid-template-columns: 1fr;
+  }
+}

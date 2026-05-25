@@ -1,0 +1,23 @@
+risk_task:
+  description: >
+    Review this renewal context and produce a structured renewal risk review.
+
+    Account JSON:
+    {account_json}
+
+    Contract JSON:
+    {contract_json}
+
+    Usage JSON:
+    {usage_json}
+
+    Tickets JSON:
+    {tickets_json}
+
+    Invoices JSON:
+    {invoices_json}
+  expected_output: >
+    A ContractRiskReview object with risk_level, summary, risks,
+    recommended_questions, and suggested_actions. Keep the summary concise
+    and base every risk on the provided data.
+  agent: renewal_risk_specialist

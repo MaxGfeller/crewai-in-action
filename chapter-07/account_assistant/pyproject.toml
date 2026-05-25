@@ -1,0 +1,35 @@
+[project]
+name = "account_assistant"
+version = "0.1.0"
+description = "Chapter 7 - Conversational CrewAI account assistant with AG-UI and CopilotKit"
+authors = [{ name = "Max Gfeller", email = "mail@maxgfeller.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=1.9.0",
+    "crewai[google-genai]",
+    "google-genai",
+    "pydantic>=2.6",
+    "pillow>=12.0",
+    "python-dotenv>=1.0",
+    "httpx>=0.27",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.30",
+    "ag-ui-protocol>=0.1.8",
+    "google-api-python-client>=2.120",
+    "google-auth>=2.29",
+    "google-auth-oauthlib>=1.2",
+]
+
+[project.scripts]
+chat = "account_assistant.cli:chat"
+chat-once = "account_assistant.cli:chat_once"
+account-assistant-server = "account_assistant.server:serve"
+test = "account_assistant.cli:test"
+plot = "account_assistant.cli:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/account_assistant"]

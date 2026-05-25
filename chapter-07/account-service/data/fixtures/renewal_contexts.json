@@ -1,0 +1,212 @@
+[
+  {
+    "account": {
+      "account_id": "acct_acme",
+      "name": "Acme Corp",
+      "tier": "enterprise",
+      "owner": "Mia Chen",
+      "renewal_date": "2026-07-31",
+      "arr_usd": 180000,
+      "health": "at_risk"
+    },
+    "contacts": [
+      {
+        "name": "Jordan Lee",
+        "role": "VP Operations",
+        "email": "jordan.lee@acme.example",
+        "influence": "decision_maker"
+      },
+      {
+        "name": "Priya Shah",
+        "role": "Platform Lead",
+        "email": "priya.shah@acme.example",
+        "influence": "champion"
+      },
+      {
+        "name": "Marco Rivera",
+        "role": "Finance Controller",
+        "email": "marco.rivera@acme.example",
+        "influence": "finance"
+      }
+    ],
+    "contract": {
+      "account_id": "acct_acme",
+      "renewal_date": "2026-07-31",
+      "notice_period_days": 60,
+      "auto_renews": true,
+      "payment_terms": "Net 30",
+      "discount_expires": "2026-06-30",
+      "contracted_seats": 240,
+      "special_terms": [
+        "15% renewal discount expires before renewal date",
+        "Support SLA addendum requires quarterly business review",
+        "Auto-renewal notice must be sent before 2026-06-01"
+      ]
+    },
+    "usage": {
+      "account_id": "acct_acme",
+      "active_users": 151,
+      "active_users_change_pct": -28.0,
+      "seats_used_pct": 62.9,
+      "weekly_projects": 39,
+      "weekly_projects_change_pct": -18.5,
+      "last_admin_login": "2026-05-11",
+      "notable_features": ["workflow builder", "audit exports"]
+    },
+    "tickets": [
+      {
+        "ticket_id": "SUP-4108",
+        "title": "Audit export timeout on large workspace",
+        "severity": "high",
+        "status": "open",
+        "opened_at": "2026-05-13",
+        "product_area": "exports"
+      },
+      {
+        "ticket_id": "SUP-4055",
+        "title": "SCIM mapping question",
+        "severity": "medium",
+        "status": "waiting_on_customer",
+        "opened_at": "2026-05-02",
+        "product_area": "identity"
+      }
+    ],
+    "invoices": [
+      {
+        "invoice_id": "INV-2026-0441",
+        "amount_usd": 15000,
+        "due_date": "2026-05-10",
+        "status": "overdue"
+      }
+    ]
+  },
+  {
+    "account": {
+      "account_id": "acct_northstar",
+      "name": "Northstar Labs",
+      "tier": "growth",
+      "owner": "Nora Patel",
+      "renewal_date": "2026-09-15",
+      "arr_usd": 48000,
+      "health": "healthy"
+    },
+    "contacts": [
+      {
+        "name": "Elena Morris",
+        "role": "Head of Product",
+        "email": "elena.morris@northstar.example",
+        "influence": "decision_maker"
+      },
+      {
+        "name": "Theo Grant",
+        "role": "Engineering Manager",
+        "email": "theo.grant@northstar.example",
+        "influence": "technical"
+      }
+    ],
+    "contract": {
+      "account_id": "acct_northstar",
+      "renewal_date": "2026-09-15",
+      "notice_period_days": 30,
+      "auto_renews": false,
+      "payment_terms": "Net 15",
+      "discount_expires": null,
+      "contracted_seats": 75,
+      "special_terms": ["Month-to-month expansion allowed after renewal"]
+    },
+    "usage": {
+      "account_id": "acct_northstar",
+      "active_users": 66,
+      "active_users_change_pct": 19.0,
+      "seats_used_pct": 88.0,
+      "weekly_projects": 44,
+      "weekly_projects_change_pct": 23.5,
+      "last_admin_login": "2026-05-18",
+      "notable_features": ["dashboards", "collaboration rooms"]
+    },
+    "tickets": [
+      {
+        "ticket_id": "SUP-4012",
+        "title": "Question about dashboard API limits",
+        "severity": "low",
+        "status": "resolved",
+        "opened_at": "2026-04-22",
+        "product_area": "api"
+      }
+    ],
+    "invoices": [
+      {
+        "invoice_id": "INV-2026-0520",
+        "amount_usd": 4000,
+        "due_date": "2026-06-01",
+        "status": "open"
+      }
+    ]
+  },
+  {
+    "account": {
+      "account_id": "acct_globex",
+      "name": "Globex Manufacturing",
+      "tier": "strategic",
+      "owner": "Mia Chen",
+      "renewal_date": "2026-08-20",
+      "arr_usd": 310000,
+      "health": "watch"
+    },
+    "contacts": [
+      {
+        "name": "Amara Okafor",
+        "role": "CIO",
+        "email": "amara.okafor@globex.example",
+        "influence": "decision_maker"
+      },
+      {
+        "name": "Victor Chen",
+        "role": "Security Architect",
+        "email": "victor.chen@globex.example",
+        "influence": "technical"
+      }
+    ],
+    "contract": {
+      "account_id": "acct_globex",
+      "renewal_date": "2026-08-20",
+      "notice_period_days": 45,
+      "auto_renews": true,
+      "payment_terms": "Net 45",
+      "discount_expires": "2026-08-01",
+      "contracted_seats": 500,
+      "special_terms": [
+        "Security review required before seat expansion",
+        "Data residency addendum attached"
+      ]
+    },
+    "usage": {
+      "account_id": "acct_globex",
+      "active_users": 421,
+      "active_users_change_pct": 4.5,
+      "seats_used_pct": 84.2,
+      "weekly_projects": 108,
+      "weekly_projects_change_pct": 7.0,
+      "last_admin_login": "2026-05-17",
+      "notable_features": ["sso", "security reports", "workflow builder"]
+    },
+    "tickets": [
+      {
+        "ticket_id": "SUP-4099",
+        "title": "Data residency documentation request",
+        "severity": "medium",
+        "status": "open",
+        "opened_at": "2026-05-09",
+        "product_area": "security"
+      }
+    ],
+    "invoices": [
+      {
+        "invoice_id": "INV-2026-0498",
+        "amount_usd": 25833,
+        "due_date": "2026-05-25",
+        "status": "open"
+      }
+    ]
+  }
+]
