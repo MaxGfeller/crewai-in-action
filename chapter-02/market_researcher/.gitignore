@@ -1,3 +1,6 @@
 .env
 __pycache__/
 artifacts/
+
+# Local quick-test runs may produce throwaway caches; never commit them.
+.quick_test_cache/

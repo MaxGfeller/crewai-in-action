@@ -1,7 +1,30 @@
-from openai import OpenAI
-import json
+"""Quick smoke test for the OpenAI Responses API tool-calling surface.
 
-client = OpenAI(api_key="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")
+The previous version of this file hardcoded a real OpenAI API key in source
+and committed it to git. That key has been revoked and the example now reads
+the key from the environment, matching the pattern used in every other
+chapter of the book.
+
+Run with:
+
+    export OPENAI_API_KEY=sk-...
+    uv run python src/market_researcher/quick_test.py
+"""
+import os
+
+from openai import OpenAI
+
+
+def _require_api_key() -> str:
+    key = os.environ.get("OPENAI_API_KEY")
+    if not key:
+        raise SystemExit(
+            "OPENAI_API_KEY is not set. Export it (or add it to .env) and retry."
+        )
+    return key
+
+
+client = OpenAI(api_key=_require_api_key())
 
 tools = [{
     "type": "function",
@@ -19,10 +42,10 @@ tools = [{
 }]
 
 input_messages = [
-	{
-		"role": "user",
-		"content": "How much revenue did we make in 2024?"
-	}
+    {
+        "role": "user",
+        "content": "How much revenue did we make in 2024?"
+    }
 ]
 
 response = client.responses.create(

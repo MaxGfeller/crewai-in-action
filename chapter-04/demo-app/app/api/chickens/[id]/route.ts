@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { getSession } from '@/lib/auth';
 import { initDatabase } from '@/lib/db';
+import { isSameOrigin } from '@/lib/validation';
 
 export async function GET(
   request: NextRequest,
@@ -38,6 +39,9 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!isSameOrigin(request)) {
+      return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    }
     const user = await getSession();
     if (!user) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
@@ -45,7 +49,19 @@ export async function PUT(
 
     const { id } = await params;
     initDatabase();
-    const { name, breed, age_months, weight_kg, status, notes } = await request.json();
+    const body = await request.json();
+    const name = typeof body?.name === 'string' ? body.name.trim() : '';
+    if (!name || name.length > 120) {
+      return NextResponse.json(
+        { error: 'Name is required and must be at most 120 characters' },
+        { status: 400 }
+      );
+    }
+    const breed = typeof body?.breed === 'string' && body.breed.trim() ? body.breed.trim() : null;
+    const notes = typeof body?.notes === 'string' && body.notes.trim() ? body.notes.trim() : null;
+    const status = typeof body?.status === 'string' && body.status.trim() ? body.status.trim() : 'active';
+    const age_months = Number.isFinite(body?.age_months) ? Math.trunc(body.age_months) : null;
+    const weight_kg = Number.isFinite(body?.weight_kg) ? body.weight_kg : null;
 
     // Check if chicken exists and belongs to user
     const existing = db
@@ -60,7 +76,7 @@ export async function PUT(
       `UPDATE chickens
        SET name = ?, breed = ?, age_months = ?, weight_kg = ?, status = ?, notes = ?, updated_at = CURRENT_TIMESTAMP
        WHERE id = ? AND user_id = ?`
-    ).run(name, breed || null, age_months || null, weight_kg || null, status || 'active', notes || null, id, user.id);
+    ).run(name, breed, age_months, weight_kg, status, notes, id, user.id);
 
     const chicken = db.prepare('SELECT * FROM chickens WHERE id = ?').get(id);
     return NextResponse.json({ chicken });
@@ -78,6 +94,9 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!isSameOrigin(request)) {
+      return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    }
     const user = await getSession();
     if (!user) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
