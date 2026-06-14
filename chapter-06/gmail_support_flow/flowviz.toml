@@ -1,0 +1,8 @@
+[render]
+theme = "crew"
+direction = "vertical"
+width = 2440
+node_width = 320
+rank_gap = 105
+node_gap = 50
+margin = 80
