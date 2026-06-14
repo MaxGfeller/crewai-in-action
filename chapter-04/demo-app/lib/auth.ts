@@ -17,6 +17,31 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
   return bcrypt.compare(password, hash);
 }
 
+/**
+ * bcrypt hash whose work factor matches the rest of the app (cost 10). It is
+ * not a real user's password - it's only used to keep the response time
+ * constant when the requested email does not exist. Generating one fresh
+ * per process keeps the cost calibrated to the real verifier.
+ */
+let _dummyHashCache: Promise<string> | null = null;
+function getDummyHash(): Promise<string> {
+  if (_dummyHashCache === null) {
+    _dummyHashCache = bcrypt.hash('__not_a_real_password__', 10);
+  }
+  return _dummyHashCache;
+}
+
+/**
+ * Run ``bcrypt.compare`` against a hash - either the real one (when the
+ * user exists) or a dummy hash that always fails. This keeps login
+ * response time roughly constant regardless of whether the email is
+ * registered, preventing user-enumeration via timing.
+ */
+export async function verifyPasswordConstantTime(password: string, hash: string | null): Promise<boolean> {
+  const target = hash ?? (await getDummyHash());
+  return bcrypt.compare(password, target);
+}
+
 export function createSession(userId: number): string {
   const sessionId = randomBytes(32).toString('hex');
   const expiresAt = new Date();

@@ -6,6 +6,12 @@ from seo_crew.tools.image_generation_tool import ImageGenerationTool
 from crewai.knowledge.source.text_file_knowledge_source import TextFileKnowledgeSource
 from crewai.knowledge.source.json_knowledge_source import JSONKnowledgeSource
 
+# Knowledge sources resolve relative to the working directory; CrewAI's
+# knowledge loaders use the current working directory as the base, so
+# these paths work when the project root (chapter-03/seo_crew/) is the
+# CWD — which pyproject.toml's [project.scripts] entry guarantees via
+# `uv run seo_crew`. If you run the module directly with a different
+# CWD, use the absolute path form or the `knowledge/` prefix.
 about_us_md = TextFileKnowledgeSource(file_paths=["about-us.md"])
 competitors_json = JSONKnowledgeSource(file_paths=["competitors.json"])
 

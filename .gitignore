@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Editors / IDEs
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Node / Next.js (chapter-04 demo-app)
+node_modules/
+.next/
+
+# CrewAI artifacts & logs
+artifacts/
+*.log
