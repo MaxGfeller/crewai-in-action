@@ -480,14 +480,14 @@ tools = [
 
 [[package]]
 name = "crewai-flowviz"
-version = "0.1.1"
+version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pillow" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/68/9d/1498401f8f469eec0f4b1d5c721e465704c68e8c380c04737f308895e53c/crewai_flowviz-0.1.1.tar.gz", hash = "sha256:464fa5909c22c4009dae80f7da5b9362dd7b1c7ae372fc74db72cbb16d68c7f0", size = 214025 }
+sdist = { url = "https://files.pythonhosted.org/packages/e2/a9/602b0895ea10b627a27aaa2278273bf711d5849e05373552a99c125ae969/crewai_flowviz-0.1.2.tar.gz", hash = "sha256:6a1b7d9fd79e570e1b17cbd4c31290924739b42ef8c2d7bbe5e3600131224568", size = 216908 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a9/10/b70286827ce278d95b3328d92eba92f14fbdc919417ff7d2b4f4583d8519/crewai_flowviz-0.1.1-py3-none-any.whl", hash = "sha256:7875978a7e21db28d67197b6653f711d3d9ba6b92e1c1c18c21061b6738a7f9e", size = 29339 },
+    { url = "https://files.pythonhosted.org/packages/dc/2d/fc74858f920766456520f471c1482217f86b4de5e67d6c92da52a4c673cd/crewai_flowviz-0.1.2-py3-none-any.whl", hash = "sha256:a1b33ed1a9241100ce521007dc22332fbf4f7f07764ad30e63f316120210a763", size = 32099 },
 ]
 
 [[package]]
@@ -728,7 +728,7 @@ dependencies = [
 requires-dist = [
     { name = "crewai", extras = ["google-genai"] },
     { name = "crewai", extras = ["tools"], specifier = ">=1.9.0" },
-    { name = "crewai-flowviz", specifier = ">=0.1.1" },
+    { name = "crewai-flowviz", specifier = ">=0.1.2" },
     { name = "google-api-python-client", specifier = ">=2.120" },
     { name = "google-auth", specifier = ">=2.29" },
     { name = "google-auth-oauthlib", specifier = ">=1.2" },
