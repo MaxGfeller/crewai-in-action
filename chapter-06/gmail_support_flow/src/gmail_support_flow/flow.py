@@ -90,6 +90,19 @@ class SupportInboxFlow(Flow[SupportFlowState]):
     # ------------------------------------------------------------------
     @start()
     def intake(self) -> None:
+        # Resume detection: ``@persist`` rehydrates ``self.state`` from the
+        # SQLite snapshot when ``kickoff(inputs={"id": flow_id})`` is called
+        # with a flow id that already has prior state. When that happens,
+        # ``self.state.thread`` is already populated and ``thread_payload``
+        # is None - the @start() method must NOT overwrite the resumed
+        # thread, or the recovery semantics from chapter 6.6 break.
+        if self.state.thread is not None:
+            print(
+                f"[flow] resume detected (run_id={self.state.run_id}, "
+                f"thread={self.state.thread.thread_id}); skipping intake"
+            )
+            return
+
         # CrewAI wraps dict state fields in a LockedDictProxy; pydantic's
         # model_validate gate-keeps on isinstance(..., dict) so we unwrap
         # to a real dict first.
