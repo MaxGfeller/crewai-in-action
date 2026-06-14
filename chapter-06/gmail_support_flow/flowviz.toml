@@ -2,7 +2,15 @@
 theme = "crew"
 direction = "vertical"
 width = 2440
-node_width = 320
-rank_gap = 105
-node_gap = 50
-margin = 80
+node_width = 380
+min_node_height = 96
+rank_gap = 150
+node_gap = 84
+margin = 96
+font_size = 20
+small_font_size = 15
+edge_font_size = 16
+
+[theme]
+badge_text = "#3f4348"
+label_border = "#c5c5c0"
