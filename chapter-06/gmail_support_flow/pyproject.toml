@@ -7,6 +7,7 @@ requires-python = ">=3.10,<3.13"
 dependencies = [
     "crewai[tools]>=1.9.0",
     "crewai[google-genai]",
+    "crewai-flowviz",
     "google-genai",
     "pydantic>=2.6",
     "python-dotenv>=1.0",
@@ -23,6 +24,7 @@ run_crew = "gmail_support_flow.main:run"
 run-one = "gmail_support_flow.main:run_one"
 list-gmail-threads = "gmail_support_flow.main:list_gmail_threads"
 plot = "gmail_support_flow.main:plot"
+flowviz = "crewai_flowviz.cli:main"
 replay = "gmail_support_flow.main:replay"
 test = "gmail_support_flow.main:test"
 

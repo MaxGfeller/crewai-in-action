@@ -479,6 +479,18 @@ tools = [
 ]
 
 [[package]]
+name = "crewai-flowviz"
+version = "0.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pillow" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e1/0e/b5c1c342c97d388b9166b7addf385e0d372db66bc7bd053d07ac25e81294/crewai_flowviz-0.1.0.tar.gz", hash = "sha256:f71b1d3a497eeb6969fd38aa119a5f1555ff71b77a95309a0ebcb2ec65852f77", size = 212323 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e2/7e/207f5e29bc1e3ee0bf7ac0708d7f62768d3b369019cc84d87f3116e2301e/crewai_flowviz-0.1.0-py3-none-any.whl", hash = "sha256:850e83ccd3d58594953f4357bf2501522e41a8091d7eb90c0cf7a385fee909dc", size = 28072 },
+]
+
+[[package]]
 name = "crewai-tools"
 version = "1.14.2"
 source = { registry = "https://pypi.org/simple" }
@@ -701,6 +713,7 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "crewai", extra = ["google-genai", "tools"] },
+    { name = "crewai-flowviz" },
     { name = "google-api-python-client" },
     { name = "google-auth" },
     { name = "google-auth-oauthlib" },
@@ -715,6 +728,7 @@ dependencies = [
 requires-dist = [
     { name = "crewai", extras = ["google-genai"] },
     { name = "crewai", extras = ["tools"], specifier = ">=1.9.0" },
+    { name = "crewai-flowviz" },
     { name = "google-api-python-client", specifier = ">=2.120" },
     { name = "google-auth", specifier = ">=2.29" },
     { name = "google-auth-oauthlib", specifier = ">=1.2" },
