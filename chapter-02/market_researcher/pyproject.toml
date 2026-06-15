@@ -2,7 +2,7 @@
 name = "market_researcher"
 version = "0.1.0"
 description = "Single-agent market research analyst using crewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "Max Gfeller", email = "mail@maxgfeller.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
     "crewai-tools>=1.7.2",

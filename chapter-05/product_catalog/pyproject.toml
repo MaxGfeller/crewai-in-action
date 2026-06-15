@@ -2,7 +2,7 @@
 name = "product_catalog"
 version = "0.1.0"
 description = "Multimodal product catalog manager using CrewAI"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "Max Gfeller", email = "mail@maxgfeller.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
     "crewai[tools]>=1.9.0",
