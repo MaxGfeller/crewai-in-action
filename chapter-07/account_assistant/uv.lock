@@ -8,13 +8,13 @@ source = { editable = "." }
 dependencies = [
     { name = "ag-ui-protocol" },
     { name = "crewai", extra = ["google-genai", "tools"] },
+    { name = "crewai-flowviz" },
     { name = "fastapi" },
     { name = "google-api-python-client" },
     { name = "google-auth" },
     { name = "google-auth-oauthlib" },
     { name = "google-genai" },
     { name = "httpx" },
-    { name = "pillow" },
     { name = "pydantic" },
     { name = "python-dotenv" },
     { name = "uvicorn", extra = ["standard"] },
@@ -25,13 +25,13 @@ requires-dist = [
     { name = "ag-ui-protocol", specifier = ">=0.1.8" },
     { name = "crewai", extras = ["google-genai"] },
     { name = "crewai", extras = ["tools"], specifier = ">=1.9.0" },
+    { name = "crewai-flowviz", specifier = ">=0.1.2" },
     { name = "fastapi", specifier = ">=0.111" },
     { name = "google-api-python-client", specifier = ">=2.120" },
     { name = "google-auth", specifier = ">=2.29" },
     { name = "google-auth-oauthlib", specifier = ">=1.2" },
     { name = "google-genai" },
     { name = "httpx", specifier = ">=0.27" },
-    { name = "pillow", specifier = ">=12.0" },
     { name = "pydantic", specifier = ">=2.6" },
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.30" },
@@ -574,6 +574,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/28/1a/b3ce01f4d4b7773dbd2aa21bdda9d4d3d11778dde3e6b6f4a690f5cd89f8/crewai_core-1.14.5.tar.gz", hash = "sha256:b72c0cfb953bf934b252fa826cb71c80127ccc42f9a39feb2a7a97ee8272be82", size = 19168 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f5/52/05da585bdc287c7d9b368e6f58bf23d01a2bf20ba953370119e8cdc2d3ea/crewai_core-1.14.5-py3-none-any.whl", hash = "sha256:f2349160d10345e9096660c78ed6c5a6a9922033cd4c5e1b18dcbf8ea72a48b3", size = 27385 },
+]
+
+[[package]]
+name = "crewai-flowviz"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pillow" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e2/a9/602b0895ea10b627a27aaa2278273bf711d5849e05373552a99c125ae969/crewai_flowviz-0.1.2.tar.gz", hash = "sha256:6a1b7d9fd79e570e1b17cbd4c31290924739b42ef8c2d7bbe5e3600131224568", size = 216908 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/dc/2d/fc74858f920766456520f471c1482217f86b4de5e67d6c92da52a4c673cd/crewai_flowviz-0.1.2-py3-none-any.whl", hash = "sha256:a1b33ed1a9241100ce521007dc22332fbf4f7f07764ad30e63f316120210a763", size = 32099 },
 ]
 
 [[package]]

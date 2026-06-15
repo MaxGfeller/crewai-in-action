@@ -12,7 +12,6 @@ import httpx
 
 from account_assistant.conversation import get_conversation_service
 from account_assistant.flow import AccountAssistantFlow
-from account_assistant.flow_figure import patch_png_export_button, render_flow_png
 from account_assistant.settings import account_service_url, require_openai_api_key
 
 
@@ -92,15 +91,11 @@ def chat() -> None:
 
 def plot() -> None:
     out_dir = _artifacts_root()
-    flow = AccountAssistantFlow()
-    tmp_html = Path(flow.plot("conversation_flow.html", show=False))
+    tmp_html = Path(AccountAssistantFlow().plot("conversation_flow.html", show=False))
     for src in tmp_html.parent.iterdir():
         shutil.copy2(src, out_dir / src.name)
     final = out_dir / "conversation_flow.html"
-    final_png = render_flow_png(flow, out_dir / "conversation_flow.png")
-    patch_png_export_button(out_dir / "conversation_flow_script.js", final_png.name)
     print(f"[plot] wrote {final}")
-    print(f"[plot] wrote {final_png}")
 
 
 def test() -> None:
