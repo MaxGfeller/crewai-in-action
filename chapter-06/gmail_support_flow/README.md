@@ -9,7 +9,7 @@ The Flow demonstrates:
 - `@persist` for restart/recovery
 - Retry-via-router (no hidden `try/except`)
 - Event listeners that record runs to `artifacts/runs/<run_id>/events.jsonl`
-- `flow.plot()` for a chapter figure
+- `flow.plot()` for the interactive chapter figure
 
 ## Setup
 
@@ -50,12 +50,24 @@ uv run gmail_support_flow
 # Chapter figure
 uv run plot
 
+# Static FlowViz figure
+uv run flowviz render gmail_support_flow.flow:SupportInboxFlow \
+  --pythonpath src \
+  --config ../../flowviz.toml \
+  --out artifacts/flow_diagram.png
+
 # Resume a specific flow by id (after a Ctrl-C)
 uv run replay --flow-id <hex>
 
 # Smoke test: expects 1 escalation, 0 sends
 uv run test
 ```
+
+`uv run plot` writes the interactive `artifacts/flow_diagram.html`. The
+separate `uv run flowviz render ...` command writes a static FlowViz image for
+slide decks, docs, or print. Render settings live in the repo-level
+`../../flowviz.toml`; change `--out` to `artifacts/flow_diagram.svg` to produce
+the vector version.
 
 If the support service is down, the Flow fails fast with an instruction to start it. The Flow never falls back to a local file.
 
