@@ -48,4 +48,27 @@ class LoadAccountContextTool(BaseTool):
                 "account_name": context.account.name,
             },
         )
-        return context.model_dump_json()
+        primary_contacts = ", ".join(
+            f"{contact.name} ({contact.role})" for contact in context.contacts[:3]
+        )
+        open_tickets = [
+            ticket for ticket in context.tickets if ticket.status != "resolved"
+        ]
+        overdue_invoices = [
+            invoice for invoice in context.invoices if invoice.status == "overdue"
+        ]
+        return (
+            f"Account: {context.account.name} ({context.account.account_id})\n"
+            f"Owner: {context.account.owner}\n"
+            f"Health: {context.account.health}\n"
+            f"ARR: ${context.account.arr_usd:,}\n"
+            f"Renewal date: {context.contract.renewal_date}\n"
+            f"Primary contacts: {primary_contacts or 'None'}\n"
+            f"Usage: {context.usage.active_users} active users "
+            f"({context.usage.active_users_change_pct:+.1f}%), "
+            f"{context.usage.seats_used_pct:.1f}% seats used, "
+            f"{context.usage.weekly_projects} weekly projects "
+            f"({context.usage.weekly_projects_change_pct:+.1f}%)\n"
+            f"Open support tickets: {len(open_tickets)}\n"
+            f"Overdue invoices: {len(overdue_invoices)}"
+        )
